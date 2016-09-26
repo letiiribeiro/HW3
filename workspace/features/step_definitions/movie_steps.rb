@@ -18,5 +18,9 @@ When (/I (un)?check the following ratings: (.*)/) do |uncheck, rating_list|
 end
 
 Then (/I should see all of the movies/) do
-     Movie.find(:all).count.should == page.all('table tbody tr').count
+    Movie.find(:all).count.should == page.all('table tbody tr').count
+end
+
+Then (/I should see "(.*)" before "(.*)"/) do |e1, e2|
+    page.body.index(e1).should < page.body.index(e2)
 end
